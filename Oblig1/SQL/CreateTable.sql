@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS bedrift;
+DROP TABLE IF EXISTS person;
+
 CREATE TABLE bedrift(
 	bedriftsId varchar(4),
 	navn varchar(8),
@@ -9,7 +12,7 @@ CREATE TABLE person(
 	navn varchar(8),
 	alder int,
 	bedriftsId varchar(4),
-	CONSTRAINT bedriftFK FOREIGN KEY (bedriftsId) REFERENCES bedrift(bedriftsId)
+	CONSTRAINT bedriftFK FOREIGN KEY (bedriftsId) REFERENCES bedrift(bedriftsId),
 	CONSTRAINT personPK PRIMARY KEY (enId)
 );
 
