@@ -1,7 +1,7 @@
 --Setup
 > mysql -u adrian -p privBase
-> source /home/admo/git/DAT151/Oblig1/SQL/CreateTable.sql
-> source /home/admo/git/DAT151/Oblig1/SQL/InsertMockData.sql
+> source /home/admo/git/DAT151/Oblig1/SQL/Task1/CreateTable.sql
+> source /home/admo/git/DAT151/Oblig1/SQL/Task1/InsertMockData.sql
 > SELECT * FROM bedrift;
 > SELECT * FROM person;
 
@@ -65,6 +65,12 @@ Return:	+--------------------+--------+----------+----------+
 	+--------------------+--------+----------+----------+
 	| privBase.testTable | repair | status   | OK       |
 	+--------------------+--------+----------+----------+
+> REPAIR TABLE person; --InnoDB table
+	+-----------------+--------+----------+---------------------------------------------------------+
+	| Table           | Op     | Msg_type | Msg_text                                                |
+	+-----------------+--------+----------+---------------------------------------------------------+
+	| privBase.person | repair | note     | The storage engine for the table doesnt support repair  |
+	+-----------------+--------+----------+---------------------------------------------------------+
 
 > OPTIMIZE TABLE testTable;
 	+--------------------+----------+----------+----------+
@@ -72,5 +78,21 @@ Return:	+--------------------+--------+----------+----------+
 	+--------------------+----------+----------+----------+
 	| privBase.testTable | optimize | status   | OK       |
 	+--------------------+----------+----------+----------+
+
+> CHECKSUM TABLE testTable;
+Return:	+--------------------+------------+
+	| Table              | Checksum   |
+	+--------------------+------------+
+	| privBase.testTable | 1105349955 |
+	+--------------------+------------+
+
+--What would happen if you try REPAIR TABLE on the InnoDB table?
+-- Answer: See above return (Error saying the storage engine for the table doesn't support repair. 
+
+--When would you use the innochecksum program?
+-- Answer: To Check if the file is corrupted or has error. It checks the current checksum against a stored checksum. 
+
+
+
 
 
