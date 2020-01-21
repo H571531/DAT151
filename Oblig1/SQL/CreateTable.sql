@@ -1,5 +1,6 @@
-DROP TABLE IF EXISTS bedrift;
+DROP TABLE IF EXISTS testTable;
 DROP TABLE IF EXISTS person;
+DROP TABLE IF EXISTS bedrift;
 
 CREATE TABLE bedrift(
 	bedriftsId varchar(4),
@@ -16,5 +17,8 @@ CREATE TABLE person(
 	CONSTRAINT personPK PRIMARY KEY (enId)
 );
 
-
-
+CREATE TABLE testTable(
+	testId varchar(4),
+	navn varchar(8),
+	CONSTRAINT testPK PRIMARY KEY (testId)
+);
