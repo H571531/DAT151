@@ -25,7 +25,7 @@ Return:	+--------+------------+-----------+--------------+-------------+--------
 --Kan ha flere av samme FK
 --Viser Null er permitted som FK dvs En person trenger ikke ha en bedrift. 
 
-> SHOW INDEX FROM person;
+> SHOW INDEX FROM bedrift;
 Return:	+---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
 	| Table   | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
 	+---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
