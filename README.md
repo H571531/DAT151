@@ -18,3 +18,6 @@ Teoretisk oppgave.
 Relevante filer:
 - Oblig1/Document/__*Dat151-Oblig1.pdf*__
 #### Oppgave 4: Normalisering og Denormalisering (Implementasjon av database)
+Relevante filer:
+- Oblig1/Document/__*Dat151-Oblig1.pdf*__
+- Oblig1/SQL/Task4/__*CreateSchema.sql*__
