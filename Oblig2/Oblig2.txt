@@ -1,0 +1,41 @@
+Describe some of the key differences between the Linux/UNIX filesystem and how files and folders are organised in windows. 
+ - Tree vs chaos
+
+What is a "mount point"? Create a new folder and use the mount command to let this be the mountpoint for anoter directory/filesystem. Explain what happens for the command "mount -t ntfs /dev/sda2 /opt"
+
+3. In most UNIX systems, there are seven types of files defined. What are these? use the file command to display the information of a few files. In which of the seven categories do these files belong
+
+4. From a user perspective, hard links and symbolic links allow the same file to exist in more than one place. Find an empty directory and create a new file with some text in it. Create a hard link for this file in the same directory using the command ln. Now create a symbolic link for the file using ln -s. Then delete the original file, leaving only the links.
+a) Check if the hard link still works. Why/why not?
+b) Check if the soft link still works. Why/why not?
+
+Task2: File attributes and permissions
+1. In the traditional Linux/UNIX/ filesystem model, every file comes bundled with a set of 16 bits. What are these bits, and why are they needed? Explain.
+
+2. The nine permission bits are often represented using octal numbers. Explain what tese are, and how the permission bits 110 100 101 can be represented using octals. What permissions does a file with the octal value 745 have?
+
+3. chmod is a tool that allows users to change the permission of bits of a file, either by providing octal values, or by a mnemonic syntax where you can combine a set of targets (u,g,o for user, group and others, or a for all three) combined with an operator (+,-,= for add, remove or set) before providing the wanted permissions. For instance to add read and write permissions to the group and all others for a file, the command chmod go+rw can be used.
+
+a) Create a new file and use chmod with the mnemonic syntax to add read and write permissions to the file owner, read and execute permissions for the group
+b) Create a second file with the same permissions, but now use chmod with octal numbers to set the permissions.
+c) Can you think of any reasons why octal numbers can be preferred over the mnemonic syntax. 
+	- Quicker, and less prone to forgetting something. 
+
+Part 2 - Software installation and management
+Task 3: Package management systems and lower level package management
+1. What is a package management system, and why do we need one? What is the package format used by the package managemet system on your machine?
+
+2. Package management can often be considered to have two layers, where lower level package management contains tools used to install, uninstall and query packages.
+	a) Use the package management tool available on your system to list all installed packages. How many are installed on your system? Select one package and use the tool again to display all its dependencies
+	b) use wget to downlad the package for the application called openvpn.
+	c) try to install this package using your system's packaging tool. What happens? Why?
+
+Task 4 High level package management
+1. Explain how theses systems can locate and install software. What is the high-level package management system on your machine?
+
+2. What is a software repository? If you are using a yum as your high-level package management system, add the epel software repository to your system. 
+
+3. Try using yum or apt to install the openvpn package. Does this differ in any way from taks 3? if it installs, remove the package afterwards
+
+4. Use yum or apt to update the packages on your system. 
+
