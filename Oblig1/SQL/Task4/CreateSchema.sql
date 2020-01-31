@@ -1,11 +1,7 @@
---DROP  SCHEMA IF EXISTS Oblig1-Oppgave4 CASCADE; --Uncomment for å slette og lage alt på nytt.
---CREATE SCHEMA Oblig1-Oppgave4;
---SET search_path TO Oblig1-Oppgave4;
-
 
 DROP TABLE IF EXISTS FACULTY;
 CREATE TABLE FACULTY(
-	fCode varchar(3),
+	fCode varchar(3), --Valgt Varcha siden coden kan inneholde tekst
 	fName varchar(80),
 	fPhoneNr varchar(10),
 	fAddress varchar(80),
@@ -16,7 +12,7 @@ DROP TABLE IF EXISTS COURSE;
 CREATE TABLE COURSE(
 	cCode varchar(6),
 	cName varchar(80),
-	cYear date,
+	cYear date, --year er inkludert i denne datatypen. Dermed ga det mening for meg å sette den til date
 	CONSTRAINT CoursePK PRIMARY KEY (cCode)
 );
 
@@ -64,8 +60,8 @@ CREATE TABLE STUDENT(
 	sPhoneNr VARCHAR(11),
 	homAddress VARCHAR(80),
 	bDate DATE,
-	Gender VARCHAR(10),
-	sYear INTEGER,
+	Gender ENUM('male','female','Non','Other'),--Siden 3 og 4 enum verdier tar like mye plass (trenger 2 bits, legger jeg til ekstra)
+	sYear INTEGER, --Denne verdien kan tenkes at man f.eks vil legge til på for neste år. 
 	level VARCHAR(10),
 	fCode VARCHAR(3),
 	ProgID MEDIUMINT NOT NULL,
@@ -80,7 +76,7 @@ CREATE TABLE STUDENT(
 DROP TABLE IF EXISTS GRADES;
 CREATE TABLE GRADES(
 	GradeID MEDIUMINT NOT NULL AUTO_INCREMENT,
-	cYear DATE,
+	cYear DATE, -- Strengt tatt ikke nødvendig siden man kan hente cYear fra Course entititeten
 	cCode varchar(6),
 	StudentID VARCHAR(6),
 	CONSTRAINT GradePK PRIMARY KEY (GradeID),
