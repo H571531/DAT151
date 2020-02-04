@@ -1,3 +1,4 @@
+--Oppgave1
 CREATE TABLE TheTable (
 	id SMALLINT(1) UNSIGNED NOT NULL AUTO_INCREMENT,
 	name varchar(25) NOT NULL,
@@ -15,14 +16,14 @@ CREATE TABLE LogTable (
 	CONSTRAINT LogPK PRIMARY KEY (id)
 );
 
-
+--Oppgave2
 CREATE TABLE AnotherTable (
 	id SMALLINT(1) UNSIGNED NOT NULL AUTO_INCREMENT,
 	name varchar(25) NOT NULL,
 	note varchar(25) NOT NULL,
 	CONSTRAINT TheTablePK PRIMARY KEY (id)
 )WITH SYSTEM VERSIONING;
-
+--Oppgave3
 CREATE TABLE teacher(
 	id SMALLINT(1) UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(80),
@@ -31,4 +32,28 @@ CREATE TABLE teacher(
 	total DOUBLE as (bonus+salary),
 	CONSTRAINT teacherPK PRIMARY KEY (id) 
 );
+--Oppgave4
+CREATE TABLE t1 (
+	id SMALLINT(1) UNSIGNED NOT NULL AUTO_INCREMENT,
+	fyllt timestamp default now() on update now(),
+	note varchar(25) NOT NULL,
+	CONSTRAINT t1PK PRIMARY KEY (id)
+);
+
+
+CREATE TABLE t2 (
+	id SMALLINT(1) UNSIGNED NOT NULL AUTO_INCREMENT,
+	fyllt timestamp default now() on update now(),
+	note varchar(25) NOT NULL,
+	CONSTRAINT t2PK PRIMARY KEY (id)
+);
+
+
+CREATE TABLE t3 (
+	id SMALLINT(1) UNSIGNED NOT NULL AUTO_INCREMENT,
+	fyllt timestamp default now() on update now(),
+	note varchar(25) NOT NULL,
+	CONSTRAINT t3PK PRIMARY KEY (id)
+);
+
 

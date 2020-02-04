@@ -1,27 +1,5 @@
 --a
-CREATE TABLE t1 (
-	id SMALLINT(1) UNSIGNED NOT NULL AUTO_INCREMENT,
-	fyllt timestamp default now() on update now(),
-	note varchar(25) NOT NULL,
-	CONSTRAINT t1PK PRIMARY KEY (id)
-);
-
-
-CREATE TABLE t2 (
-	id SMALLINT(1) UNSIGNED NOT NULL AUTO_INCREMENT,
-	fyllt timestamp default now() on update now(),
-	note varchar(25) NOT NULL,
-	CONSTRAINT t2PK PRIMARY KEY (id)
-);
-
-
-CREATE TABLE t3 (
-	id SMALLINT(1) UNSIGNED NOT NULL AUTO_INCREMENT,
-	fyllt timestamp default now() on update now(),
-	note varchar(25) NOT NULL,
-	CONSTRAINT t3PK PRIMARY KEY (id)
-);
-
+--Finnes i ../Tables.sql
 --b
 delimiter $
 CREATE TRIGGER tr12 BEFORE INSERT ON t1
