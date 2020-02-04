@@ -21,3 +21,9 @@ Relevante filer:
 Relevante filer:
 - Oblig1/Document/__*Dat151-Oblig1.pdf*__
 - Oblig1/SQL/Task4/__*CreateSchema.sql*__
+
+### Oblig 2
+Dat151/Oblig2
+#### Alle oppgaver
+Relevante filer: 
+- Oblig2/__*Oblig2.txt*__
