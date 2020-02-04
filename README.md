@@ -27,3 +27,17 @@ Dat151/Oblig2
 #### Alle oppgaver
 Relevante filer: 
 - Oblig2/__*Oblig2.txt*__
+
+### Oblig 3
+Dat151/Oblig3
+#### Oppgave 1: Triggers
+Relevante filer: 
+- Oblig3/Task1/__*Task1.sql*__
+- Oblig3/__*Tables.sql*__
+#### Oppgave 2: Temporal database
+Relevante filer: 
+- Oblig3/Task2/__*Task2.sql*__
+- Oblig3/__*Tables.sql*__
+#### Oppave 3: Integrety constraints
+Relevante filer:
+- Oblig3/__*Tables.sql*__
