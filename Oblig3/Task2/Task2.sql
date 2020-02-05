@@ -1,8 +1,8 @@
 INSERT INTO AnotherTable (name,note)
 VALUES	('1','2'),
-	('2','3'),
-	('4','5'),
-	('Adrian','Adrian');
+		('2','3'),
+		('4','5'),
+		('Adrian','Adrian');
 
 Select *, row_start,row_end FROM AnotherTable;
 

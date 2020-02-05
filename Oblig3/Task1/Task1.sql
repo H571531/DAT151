@@ -1,4 +1,4 @@
-delimiter $
+delimiter $ --Setter en egen delimiter siden ';' Brukes i triggerne. 
 CREATE TRIGGER Task1Insert AFTER INSERT ON TheTable
 	FOR EACH ROW
 	BEGIN
@@ -26,5 +26,4 @@ CREATE TRIGGER TASK1DELETE after DELETE ON TheTable
 		INSERT INTO LogTable (changeTimeStamp,action,tableId,name,note)
 		VALUES(NOW(),'DELETE',OLD.id,OLD.name,OLD.note);
 	END$
-
-delimiter ;
+delimiter ; -- Setter delimiter tilbake til ';'
