@@ -15,6 +15,8 @@ $ sudo service rpcbind restart
 
 
 ## Client
+$ id pi
+uid=1000(pi) gid=1000(pi) grupper=1000(pi),4(adm),20(dialout),24(cdrom),27(,29(audio),44(video),46(plugdev),60(games),100(users),101(input),108(netdev(spi),998(i2c),997(gpio)
 $ sudo mkdir -p /mnt/nfs
 $ sudo chown -R pi:pi /mnt/nfs/
 $ sudo mount 10.0.0.6:/home/ /mnt/nfs/
@@ -27,3 +29,15 @@ pi@adrianpi:/mnt/nfs $ cd pi
 pi@adrianpi:/mnt/nfs/pi $ ls
 Desktop    Downloads  Music     Public     Videos
 Documents  MagPi      Pictures  Templates
+
+
+##Testing (AdrianPI client) (AdrianDC Server)
+
+pi@adrianpi:/mnt/nfs/pi $ touch Hei.txt
+pi@adrianpi:/mnt/nfs/pi $ ls -al | grep Hei.txt
+-rw-r--r--  1 pi pi    0 feb.   7 10:57 Hei.txt
+
+pi@AdrianDC:~ $ ls -al | grep Hei.txt
+-rw-r--r--  1 pi pi    0 feb.   7 10:57 Hei.txt
+
+
