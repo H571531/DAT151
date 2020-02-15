@@ -68,8 +68,6 @@ input(type="imtcp" port="514")
 #then I did a restart of the service
 $sudo systemctl restart rsyslog
 
-
-
 $sudo nano /etc/rsyslog.conf
 #Added this to the bottom of the file (10.0.0.2 is the ip of the server)
 *.* @@10.0.0.2:514
