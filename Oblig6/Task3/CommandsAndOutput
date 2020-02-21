@@ -1,1 +1,26 @@
 # Assignment 1
+sudo apt-get install samba samba-common-bin
+sudo mkdir -m 1777 /winShare
+
+sudo nano /etc/samba/smb.conf
+
+[share]
+Comment = Pi shared folder
+Path = /winShare
+Browseable = yes
+Writeable = Yes
+only guest = no
+create mask = 0777
+directory mask = 0777
+Public = yes
+Guest ok = yes
+
+/ $ cd /winShare/
+/winShare $ ls -al
+totalt 8
+drwxrwxrwt  2 root root 4096 feb.  21 18:15 .
+drwxr-xr-x 22 root root 4096 feb.  21 18:02 ..
+-rwxrw-rw-  1 pi   pi      0 feb.  21 18:15 Tester.txt
+/winShare $
+
+ $ touch fungerer.txt

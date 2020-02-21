@@ -15,6 +15,9 @@ sudo dpkg-reconfigure slapd
 # Installing a web user interface for ldap administration 
 
 sudo apt-get install phpldapadmin
+
+
+
 ldapsearch -x -LLL -H ldap:/// -b dc=adrian,dc=local
 
 
@@ -30,6 +33,11 @@ objectClass: simpleSecurityObject
 objectClass: organizationalRole
 cn: admin
 description: LDAP administrator
+
+$ nano makingou.ldif
+dn: ou=people,dc=adrian,dc=local
+objectClass: organizationalUnit
+ou: people
 
 
 $ nano addAdrian.ldif 
@@ -51,8 +59,15 @@ shadowLastChange: 0
 shadowMax: 0
 shadowWarning: 0
 
-$ ldapadd -x -W -D "cn=admin,dc=adrian,dc=local" -f addAdrian.ldifEnter LDAP Password:
+$ ldapadd -x -W -D "cn=admin,dc=adrian,dc=local" -f addAdrian.ldif
+Enter LDAP Password:
 adding new entry "uid=adrian,ou=people,dc=adrian,dc=local"
+#same was done for OU first.
+
+#Setting a default password
+$ ldappasswd -s passord123 -W -D "cn=admin,dc=adrian,dc=local" -x "uid=adrian,ou=people,dc=adrian,dc=local"
+Enter LDAP Password:
+
 
 
 

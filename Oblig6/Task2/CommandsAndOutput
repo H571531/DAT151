@@ -1,1 +1,31 @@
-# Assignment 1
+# Assignment 2
+
+
+# kerberos server
+yum install krb5-server krb5-workstation
+
+sudo nano /etc/krb5.conf
+
+sudo nano /var/kerberos/krb5kdc/kdc.conf
+
+sudo kdb5_util create -s
+
+Loading random data
+Initializing database '/var/kerberos/krb5kdc/principal' for realm 'EXAMPLE.COM',
+master key name 'K/M@EXAMPLE.COM'
+You will be prompted for the database Master Password.
+It is important that you NOT FORGET this password.
+Enter KDC database master key:
+Re-enter KDC database master key to verify:
+
+sudo systemctl enable kadmin krb5kdc
+sudo systemctl start kadmin krb5kdc
+
+sudo firewall-cmd --permanent --add-service=kerberos
+sudo firewall-cmd --reload
+
+
+# Made a user
+su user
+kinit 
+# Got the ticket. 
