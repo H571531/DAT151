@@ -25,3 +25,13 @@ BEGIN
 End$
 
 delimiter ;
+
+delimiter $
+CREATE TRIGGER Pendant_Delete AFTER DELETE ON Child
+FOR EACH ROW
+BEGIN
+	IF (NOT EXISTS(SELECT 1 FROM Child c WHERE c.parent_id = OLD.parent_id))) THEN
+		DELETE FROM Parent WHERE id=OLD.parent;
+	END IF;
+End$
+delimiter ;
