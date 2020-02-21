@@ -1,1 +1,81 @@
 # Assignment 1
+# This assignemt will be configured on my Raspberry pi network. AdrianDC will be the domain controller (server) and AdrianPi will be the client. 
+
+# Running the usual for installing
+sudo apt-get update
+sudo apt-get install slapd ldap-utils
+
+# Asked for password. Giving it a long password. 
+
+# Starting configuration
+sudo dpkg-reconfigure slapd
+
+# configuration happened
+
+# Installing a web user interface for ldap administration 
+
+sudo apt-get install phpldapadmin
+ldapsearch -x -LLL -H ldap:/// -b dc=adrian,dc=local
+
+
+dn: dc=adrian,dc=local
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: adrian
+dc: adrian
+
+dn: cn=admin,dc=adrian,dc=local
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+
+
+$ nano addAdrian.ldif 
+#addAdrian.ldif
+dn: uid=adrian,ou=people,dc=adrian,dc=local
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: adrian
+uid: adrian
+uidNumber: 16859
+gidNumber: 100
+homeDirectory: /home/adrian
+loginShell: /bin/bash
+gecos: adrian
+userPassword: {crypt}x
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0
+
+$ ldapadd -x -W -D "cn=admin,dc=adrian,dc=local" -f addAdrian.ldifEnter LDAP Password:
+adding new entry "uid=adrian,ou=people,dc=adrian,dc=local"
+
+
+
+#Client
+ $ sudo nano /etc/hostname
+
+ 
+$ sudo nano /etc/nsswitch.conf
+$ sudo pam-auth-update
+$ sudo pam-auth-update
+$ sudo service nslcd stop
+$ sudo service nslcd start
+$ sudo service nscd stop
+$ sudo service nscd start
+$ su - adrian
+Passord:
+Du må straks endre passordet ditt (ordre fra rot)
+Nytt passord:
+Bekreft nytt -passord:
+Ingen hjemmemappe, logger inn med HOME=/
+adrian@adrian:/$
+
+#Now we have successfully logged in from a client computer with a ldap user
+
+
+
