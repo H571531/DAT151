@@ -7,8 +7,6 @@ crontab: installing new crontab
 
 # Backup: 1582570801_Backup_2020-02-24_14:00:01.tar.gz
 
-LOAD DATA LOCAL INFILE '/home/admo/git/DAT151/Oblig3/Task6/data.txt' INTO TABLE auxTable FIELDS TERMINATED BY ';';
-
 
 MariaDB [Oblig5]> INSERT INTO Passing SELECT DISTINCT regno,now(),3 FROM Car LIMIT 1000;
 Query OK, 1000 rows affected (0.019 sec)
@@ -38,3 +36,4 @@ sudo sed -n -e "695,890p" "/extra/backup/DB/1582571328_Backup_2020-02-24_14:08:4
 
 > SOURCE /home/admo/git/DAT151/recovered.sql
 
+mysqlbinlog --stop-position=TheFoundPosition /var/lib/mysql/mysql-bin.000001 | mysql
