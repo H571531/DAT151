@@ -30,3 +30,24 @@ CREATE TABLE IF NOT EXISTS Reservation (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+-- New Optimized
+CREATE TABLE IF NOT EXISTS Event2 (
+  eventId VARCHAR(5),
+  eventTitle VARCHAR(45) NULL,
+  eventDate VARCHAR(45) NULL,
+  totSpaces INT NULL,
+  spacesLeft INT NULL,
+  PRIMARY KEY (EventId))
+ENGINE = InnoDB;
+
+--Trigger for new Event
+CREATE TRIGGER EventUpdate AFTER INSERT ON Reservation
+	FOR EACH ROW
+	BEGIN
+		DECLARE reservasjoner;
+		set reservasjoner = select count(*) where Event.eventId=NEW.eventId;
+		UPDATE Event
+		SET spacesLeft = (totSpaces - reservasjoner)
+		WHERE Event.eventId=NEW.eventId;
+	END$
