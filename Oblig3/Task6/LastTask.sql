@@ -14,38 +14,35 @@ CREATE TABLE IF NOT EXISTS Reservation (
   PRIMARY KEY (resID),
   CONSTRAINT eventIdFK
     FOREIGN KEY (eventId)
-    REFERENCES Event (eventId)
+    REFERENCES Event2 (eventId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT pIdFK
     FOREIGN KEY (pId)
     REFERENCES Atendee (pId)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+)
 ENGINE = InnoDB;
 
 delimiter $
 CREATE TRIGGER EventUpdate AFTER INSERT ON Reservation
 	FOR EACH ROW
 	BEGIN
-		UPDATE Event
-		SET spacesLeft = spacesLeft-1
-		WHERE eventId = NEW.eventId;
+		UPDATE Event2 SET spacesLeft = (spacesLeft-1)WHERE Event2.eventId like NEW.eventId;
 	END$
-    delimiter ;
+delimiter ;
 
 
-INSERT INTO Event2 (eventId,eventTitle,eventDate,totSpaces)
-SELECT DISTINCT eventId,eventTitle,eventDate,totSpaces 
+INSERT INTO Event2 (eventId,eventTitle,eventDate,totSpaces,spacesLeft)
+SELECT DISTINCT eventId,eventTitle,eventDate,totSpaces,totSpaces
 FROM auxTable;
     
-INSERT INTO Reservation (pId,eventId)SELECT pId,eventId FROM auxTable
+--INSERT INTO Reservation (pId,eventId)SELECT pId,eventId FROM auxTable;
 
 delimiter $
 CREATE PROCEDURE takeSpace2 (pId VARCHAR(18),eventId VARCHAR(5))
 	BEGIN
-		IF (Select spacesLeft FROM Event where Event.eventId=eventId)> 0 THEN
-            INSERT INTO Reservation (eventId,pId) VALUES (eventId, pId);
+		IF (Select spacesLeft FROM Event2 where Event2.eventId=eventId)> 0 THEN
+            	INSERT INTO Reservation (eventId,pId) VALUES (eventId, pId);
 		END IF;	
 	END$
 delimiter ;

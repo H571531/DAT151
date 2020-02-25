@@ -74,3 +74,47 @@ MariaDB [Oblig3]> SHOW PROFILE FOR QUERY 3;
 +---------------------------+----------+
 17 rows in set (0.000 sec)
 
+
+
+MariaDB [Oblig3]> set profiling =1;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [Oblig3]> call takeSpace2 ('203020','6');
+Query OK, 2 rows affected (0.077 sec)
+
+MariaDB [Oblig3]> call takeSpace2 ('203020','3');
+Query OK, 2 rows affected (0.008 sec)
+
+MariaDB [Oblig3]> call takeSpace2 ('203020','10');
+Query OK, 2 rows affected (0.002 sec)
+
+MariaDB [Oblig3]> show profiles;
++----------+------------+------------------------------------------------------------------------------------+
+| Query_ID | Duration   | Query                                                                              |
++----------+------------+------------------------------------------------------------------------------------+
+|        1 | 0.00006195 | UPDATE Event2 SET spacesLeft = (spacesLeft-1)WHERE Event2.eventId like NEW.eventId |
+|        2 | 0.00006318 | UPDATE Event2 SET spacesLeft = (spacesLeft-1)WHERE Event2.eventId like NEW.eventId |
+|        3 | 0.00006209 | UPDATE Event2 SET spacesLeft = (spacesLeft-1)WHERE Event2.eventId like NEW.eventId |
++----------+------------+------------------------------------------------------------------------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [Oblig3]> show profile fpr query 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'fpr query 2' at line 1
+MariaDB [Oblig3]> show profile for QUERY  2;
++---------------------------+----------+
+| Status                    | Duration |
++---------------------------+----------+
+| continuing inside routine | 0.000006 |
+| Checking permissions      | 0.000002 |
+| Opening tables            | 0.000002 |
+| After opening tables      | 0.000002 |
+| Init for update           | 0.000023 |
+| Updating                  | 0.000018 |
+| End of update loop        | 0.000004 |
+| Query end                 | 0.000002 |
+| Closing tables            | 0.000002 |
+| Starting cleanup          | 0.000003 |
++---------------------------+----------+
+10 rows in set (0.000 sec)
+
+
