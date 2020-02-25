@@ -34,3 +34,30 @@ Query OK, 0 rows affected (0.000 sec)
 
 MariaDB [Oblig3]> 
 
+
+-- Profiling
+
+MariaDB [Oblig3]> SHOW PROFILE FOR QUERY 3;
++---------------------------+----------+
+| Status                    | Duration |
++---------------------------+----------+
+| continuing inside routine | 0.000008 |
+| Checking permissions      | 0.000003 |
+| Opening tables            | 0.000017 |
+| After opening tables      | 0.000003 |
+| System lock               | 0.000002 |
+| Table lock                | 0.000003 |
+| Init for update           | 0.000008 |
+| Update                    | 0.000102 |
+| End of update loop        | 0.000003 |
+| Query end                 | 0.000002 |
+| Commit                    | 0.004260 |
+| Writing to binlog         | 0.000019 |
+| Commit                    | 0.000005 |
+| Closing tables            | 0.000003 |
+| Unlocking tables          | 0.000003 |
+| Closing tables            | 0.000006 |
+| Starting cleanup          | 0.000007 |
++---------------------------+----------+
+17 rows in set (0.000 sec)
+
