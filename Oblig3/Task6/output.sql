@@ -37,6 +37,19 @@ MariaDB [Oblig3]>
 
 -- Profiling
 
+MariaDB [Oblig3]> SHOW PROFILES;
++----------+------------+-------------------------------------------------------------+
+| Query_ID | Duration   | Query                                                       |
++----------+------------+-------------------------------------------------------------+
+|        1 | 0.00005695 | REMOVE FROM Reservation where pID like '203020'             |
+|        2 | 0.00439758 | DELETE FROM Reservation where pId like '203020'             |
+|        3 | 0.00445177 | INSERT INTO Reservation (eventId,pId) VALUES (eventId, pId) |
+|        4 | 0.00429047 | INSERT INTO Reservation (eventId,pId) VALUES (eventId, pId) |
+|        5 | 0.00407900 | INSERT INTO Reservation (eventId,pId) VALUES (eventId, pId) |
++----------+------------+-------------------------------------------------------------+
+5 rows in set (0.000 sec)
+
+
 MariaDB [Oblig3]> SHOW PROFILE FOR QUERY 3;
 +---------------------------+----------+
 | Status                    | Duration |
