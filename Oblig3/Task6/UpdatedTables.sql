@@ -41,13 +41,13 @@ CREATE TABLE IF NOT EXISTS Event2 (
   PRIMARY KEY (EventId))
 ENGINE = InnoDB;
 
---Trigger for new Event
+-- Trigger for new Event
+delimiter $
 CREATE TRIGGER EventUpdate AFTER INSERT ON Reservation
 	FOR EACH ROW
 	BEGIN
-		DECLARE reservasjoner;
-		set reservasjoner = select count(*) where Event.eventId=NEW.eventId;
 		UPDATE Event
-		SET spacesLeft = (totSpaces - reservasjoner)
-		WHERE Event.eventId=NEW.eventId;
+		SET spacesLeft = (totSpaces - (select count(*) from Event WHERE Event.eventId=NEW.eventId))
+		WHERE eventId = NEW.eventId;
 	END$
+    delimiter ;
