@@ -1,3 +1,5 @@
+> Source /home/admo/git/DAT151/Oblig5/SQL/CreateTable.sql
+
 CREATE TABLE IF NOT EXISTS  ImportTable  (
    regno  VARCHAR(45) NULL,
    tid  DATETIME NULL,
@@ -74,5 +76,41 @@ CREATE TABLE IF NOT EXISTS  Subscription  (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS  Passing2  (
+   regno  CHAR(7) NOT NULL,
+   timestamp  TIMESTAMP NOT NULL,
+   tollstation  SMALLINT UNSIGNED NOT NULL,
+   owner VARCHAR(85),
+  PRIMARY KEY ( regno ,  timestamp ),
+  CONSTRAINT  fk_Passing_2 
+    FOREIGN KEY ( tollstation )
+    REFERENCES  Tollstation  ( idTollstation )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT  fk_Passing_Subscription2
+    FOREIGN KEY ( regno )
+    REFERENCES Car (regno)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS  Passing3  (
+   regno  CHAR(7) NOT NULL,
+   timestamp  TIMESTAMP NOT NULL,
+   tollstation  SMALLINT UNSIGNED NOT NULL,
+   owner VARCHAR(85),
+   type  ENUM('regular', 'withsubscription') NOT NULL,
+   costPerPassing  DECIMAL(5,2) NOT NULL,
+  PRIMARY KEY ( regno ,  timestamp ),
+  CONSTRAINT  fk_Passing_3 
+    FOREIGN KEY ( tollstation )
+    REFERENCES  Tollstation  ( idTollstation )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT  fk_Passing_Subscription3
+    FOREIGN KEY ( regno )
+    REFERENCES Car (regno)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 

@@ -1,3 +1,5 @@
+> LOAD DATA LOCAL INFILE '/home/admo/git/DAT151/Oblig5/SQL/carpassingdb.txt' INTO TABLE ImportTable FIELDS TERMINATED BY ';';
+
 -- Tollstation
 INSERT INTO Tollstation
 SELECT DISTINCT idTollstation,tollname 
@@ -34,3 +36,22 @@ INSERT INTO Fee (taxclass,type,costPerPassing)
 SELECT DISTINCT taxId,'withsubscription',SubFee
 FROM ImportTable
 WHERE Subscription='yes';
+
+-- Passing2
+INSERT INTO Passing2
+SELECT DISTINCT regno,tid,idTollstation,OwnerName
+FROM ImportTable;
+
+
+
+-- Passing3
+INSERT INTO Passing3 
+SELECT DISTINCT regno,tid,idTollstation,OwnerName,'withsubscription',SubFee 
+FROM ImportTable 
+WHERE Subscription='yes';
+
+
+INSERT INTO Passing3
+SELECT DISTINCT regno,tid,idTollstation,OwnerName,'regular',TollSFee
+FROM ImportTable
+WHERE Subscription='no';
