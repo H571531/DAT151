@@ -114,3 +114,21 @@ CREATE TABLE IF NOT EXISTS  Passing3  (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS  Passing4  (
+   regno  CHAR(7) NOT NULL,
+   timestamp  TIMESTAMP NOT NULL,
+   tollstation  SMALLINT UNSIGNED NOT NULL,
+   owner VARCHAR(85),
+   name VARCHAR(45),
+  PRIMARY KEY ( regno ,  timestamp ),
+  CONSTRAINT  fk_Passing_4
+    FOREIGN KEY ( tollstation )
+    REFERENCES  Tollstation  ( idTollstation )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT  fk_Passing_Subscription4
+    FOREIGN KEY ( regno )
+    REFERENCES Car (regno)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;

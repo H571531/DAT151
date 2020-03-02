@@ -456,26 +456,26 @@ MariaDB [Oblig5]> show profiles;
 
 
 MariaDB [Oblig5]> show profiles;
-+----------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Query_ID | Duration   | Query                                                                                                                                                       |
-+----------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|        1 | 3.16445208 | SELECT SQL_NO_CACHE owner AS carowner, Sum(costPerPassing) AS totalfee
-from Passing3
-WHERE type='regular'
-GROUP BY owner HAVING totalfee > 4000 |
-|        2 | 3.11762077 | SELECT SQL_NO_CACHE owner AS carowner, Sum(costPerPassing) AS totalfee
-|          |            |from Passing3
-|          |            | WHERE type='regular'
-|          |            | GROUP BY owner HAVING totalfee > 4000 |
-|        3 | 3.12460796 | SELECT SQL_NO_CACHE owner AS carowner, Sum(costPerPassing) AS totalfee
-|          |            | from Passing3
-|          |            | WHERE type='regular'
-|          |            | GROUP BY owner HAVING totalfee > 4000 |
-|        4 | 3.08037990 | SELECT SQL_NO_CACHE owner AS carowner, Sum(costPerPassing) AS totalfee
-|          |            | from Passing3
-|          |            | WHERE type='regular'
-|          |GROUP BY owner HAVING totalfee > 4000 |
-+----------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
++----------+------------+-------------------------------------------------------------------------+
+| Query_ID | Duration   | Query                                                                   |                                                                                   |
++----------+------------+-------------------------------------------------------------------------+
+|        1 | 3.16445208 | SELECT SQL_NO_CACHE owner AS carowner, Sum(costPerPassing) AS totalfee  |
+|          |            | from Passing3															  |
+|          |            | WHERE type='regular'													  |
+|          |            | GROUP BY owner HAVING totalfee > 4000 								  |
+|        2 | 3.11762077 | SELECT SQL_NO_CACHE owner AS carowner, Sum(costPerPassing) AS totalfee  |
+|          |            | from Passing3                                                           |
+|          |            | WHERE type='regular'                                                    |
+|          |            | GROUP BY owner HAVING totalfee > 4000                                   |
+|        3 | 3.12460796 | SELECT SQL_NO_CACHE owner AS carowner, Sum(costPerPassing) AS totalfee  |
+|          |            | from Passing3                                                           |
+|          |            | WHERE type='regular'                                                    |
+|          |            | GROUP BY owner HAVING totalfee > 4000                                   |
+|        4 | 3.08037990 | SELECT SQL_NO_CACHE owner AS carowner, Sum(costPerPassing) AS totalfee  |
+|          |            | from Passing3                                                           |
+|          |            | WHERE type='regular'                                                    |
+|          |            | GROUP BY owner HAVING totalfee > 4000                                   |
++----------+------------+-------------------------------------------------------------------------+
 4 rows in set (0.000 sec)
 
 
@@ -548,4 +548,110 @@ MariaDB [Oblig5]>  EXPLAIN  SELECT SQL_NO_CACHE C.owner FROM Car C WHERE C.regno
 +------+-------------+-------+--------+--------------------------+---------+---------+----------------------+--------+----------------------------+
 3 rows in set (0.001 sec)
 
+MariaDB [Oblig5]> SHOW profiles;
++----------+------------+-------------------------------------------------------+
+| Query_ID | Duration   | Query                                                 |
++----------+------------+-------------------------------------------------------+
+|        1 | 6.77211777 | SELECT SQL_NO_CACHE C.owner FROM Car C WHERE C.regno  |
+|          |            | IN (SELECT P.regno FROM Passing P JOIN Tollstation T  |
+|          |            | ON P.tollstation = T.idTollstation                    |
+|          |            | WHERE T.name LIKE 'Gravdal'							|
+|          |            | AND YEAR(P.timestamp)=2018							|
+|          |            | AND MONTH(P.timestamp)=2								|
+|          |            | AND DAYOFWEEK(P.timestamp)=1							|
+|          |            | AND HOUR(P.timestamp) = 3) |							|
+|        2 | 6.99386417 | SELECT SQL_NO_CACHE C.owner FROM Car C WHERE C.regno	|
+|          |            | IN (SELECT P.regno FROM Passing P JOIN Tollstation T	|
+|          |            | ON P.tollstation = T.idTollstation					|
+|          |            | WHERE T.name LIKE 'Gravdal'							|
+|          |            | AND YEAR(P.timestamp)=2018							|
+|          |            | AND MONTH(P.timestamp)=2								|
+|          |            | AND DAYOFWEEK(P.timestamp)=1							|
+|          |            | AND HOUR(P.timestamp) = 3) 							|
+|        3 | 7.04556520 | SELECT SQL_NO_CACHE C.owner FROM Car C WHERE C.regno	|
+|          |            | IN (SELECT P.regno FROM Passing P JOIN Tollstation T	|
+|          |            | ON P.tollstation = T.idTollstation					|
+|          |            | WHERE T.name LIKE 'Gravdal'							|
+|          |            | AND YEAR(P.timestamp)=2018							|
+|          |            | AND MONTH(P.timestamp)=2								|
+|          |            | AND DAYOFWEEK(P.timestamp)=1							|
+|          |            | AND HOUR(P.timestamp) = 3) 							|
+|        4 | 7.02457586 | SELECT SQL_NO_CACHE C.owner FROM Car C WHERE C.regno	|
+|          |            | IN (SELECT P.regno FROM Passing P JOIN Tollstation T	|
+|          |            | ON P.tollstation = T.idTollstation					|
+|          |            | WHERE T.name LIKE 'Gravdal'							|
+|          |            | AND YEAR(P.timestamp)=2018							|
+|          |            | AND MONTH(P.timestamp)=2								|
+|          |            | AND DAYOFWEEK(P.timestamp)=1							|
+|          |            | AND HOUR(P.timestamp) = 3) 							|
+|        5 | 6.86503810 | SELECT SQL_NO_CACHE C.owner FROM Car C WHERE C.regno	|
+|          |            | IN (SELECT P.regno FROM Passing P JOIN Tollstation T	|
+|          |            | ON P.tollstation = T.idTollstation					|
+|          |            | WHERE T.name LIKE 'Gravdal'							|
+|          |            | AND YEAR(P.timestamp)=2018							|
+|          |            | AND MONTH(P.timestamp)=2								|
+|          |            | AND DAYOFWEEK(P.timestamp)=1							|
+|          |            | AND HOUR(P.timestamp) = 3) 							|
++----------+------------+-------------------------------------------------------+
+5 rows in set (0.000 sec)
 
+
+MariaDB [Oblig5]> show profiles;
++----------+------------+-------------------------------------------+
+| Query_ID | Duration   | Query                                     |
++----------+------------+-------------------------------------------+
+|        1 | 2.82387532 | SELECT SQL_NO_CACHE owner FROM Passing4	|
+|          |            | WHERE name LIKE 'Gravdal'					|
+|		   |			| AND YEAR(timestamp)=2018					|
+|		   |			| AND MONTH(timestamp)=2					|
+|		   | 			| AND DAYOFWEEK(timestamp)=1				|
+|		   |			| AND HOUR(timestamp) = 3 					|
+|        2 | 2.82266015 | SELECT SQL_NO_CACHE owner FROM Passing4	|
+|		   |			| WHERE name LIKE 'Gravdal'					|
+|		   |			| AND YEAR(timestamp)=2018					|
+|		   |			| AND MONTH(timestamp)=2					|
+|		   |			| AND DAYOFWEEK(timestamp)=1				|
+|		   |			| AND HOUR(timestamp) = 3 					|
+|        3 | 2.91836424 | SELECT SQL_NO_CACHE owner FROM Passing4	|
+|		   |			| WHERE name LIKE 'Gravdal'					|
+|		   |			| AND YEAR(timestamp)=2018					|
+|		   |			| AND MONTH(timestamp)=2					|
+|		   |			| AND DAYOFWEEK(timestamp)=1				|
+|		   |			| AND HOUR(timestamp) = 3 					|
+|        4 | 2.88128561 | SELECT SQL_NO_CACHE owner FROM Passing4	|
+|		   |			| WHERE name LIKE 'Gravdal'					|
+|		   |			| AND YEAR(timestamp)=2018					|
+|		   |			| AND MONTH(timestamp)=2					|
+|		   |			| AND DAYOFWEEK(timestamp)=1				|
+|		   |			| AND HOUR(timestamp) = 3 					|
+|        5 | 2.93795634 | SELECT SQL_NO_CACHE owner FROM Passing4	|
+|          |            | WHERE name LIKE 'Gravdal'					|
+|		   |			| AND YEAR(timestamp)=2018					|
+|		   |			| AND MONTH(timestamp)=2					|
+|		   |			| AND DAYOFWEEK(timestamp)=1				|
+|		   |			| AND HOUR(timestamp) = 3 					|
++----------+------------+-------------------------------------------+
+5 rows in set (0.000 sec)
+
+MariaDB [Oblig5]>  EXPLAIN SELECT SQL_NO_CACHE owner FROM Passing4
+    ->  WHERE name LIKE 'Gravdal'
+    ->  AND YEAR(timestamp)=2018
+    ->  AND MONTH(timestamp)=2
+    ->  AND DAYOFWEEK(timestamp)=1
+    ->  AND HOUR(timestamp) = 3;
++------+-------------+----------+------+---------------+------+---------+------+                                                                                                                                                                                                                                             ---------+-------------+
+| id   | select_type | table    | type | possible_keys | key  | key_len | ref  |                                                                                                                                                                                                                                              rows    | Extra       |
++------+-------------+----------+------+---------------+------+---------+------+                                                                                                                                                                                                                                             ---------+-------------+
+|    1 | SIMPLE      | Passing4 | ALL  | NULL          | NULL | NULL    | NULL |                                                                                                                                                                                                                                              5054935 | Using where |
++------+-------------+----------+------+---------------+------+---------+------+                                                                                                                                                                                                                                             ---------+-------------+
+1 row in set (0.000 sec)
+
+MariaDB [Oblig5]> CREATE INDEX StationName ON Passing4(name);
+
+MariaDB [Oblig5]> EXPLAIN SELECT SQL_NO_CACHE owner FROM Passing4  WHERE name LIKE 'Gravdal'  AND YEAR(timestamp)=2018  AND MONTH(timestamp)=2  AND DAYOFWEEK(timestamp)=1  AND HOUR(timestamp) = 3;
++------+-------------+----------+-------+---------------+-------------+---------+------+--------+-----------------------+
+| id   | select_type | table    | type  | possible_keys | key         | key_len | ref  | rows   | Extra                 |
++------+-------------+----------+-------+---------------+-------------+---------+------+--------+-----------------------+
+|    1 | SIMPLE      | Passing4 | range | StationName   | StationName | 48      | NULL | 352184 | Using index condition |
++------+-------------+----------+-------+---------------+-------------+---------+------+--------+-----------------------+
+1 row in set (0.042 sec)

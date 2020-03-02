@@ -121,3 +121,19 @@ Sum(F.costPerPassing) AS totalfee
  
  MariaDB [Oblig5]> CREATE INDEX RegNr ON Passing (regno);
 
+ SELECT SQL_NO_CACHE owner FROM Passing4
+ WHERE name LIKE 'Gravdal'
+ AND YEAR(timestamp)=2018
+ AND MONTH(timestamp)=2
+ AND DAYOFWEEK(timestamp)=1
+ AND HOUR(timestamp) = 3;
+ 
+ EXPLAIN SELECT SQL_NO_CACHE owner FROM Passing4
+ WHERE name LIKE 'Gravdal'
+ AND YEAR(timestamp)=2018
+ AND MONTH(timestamp)=2
+ AND DAYOFWEEK(timestamp)=1
+ AND HOUR(timestamp) = 3;
+  
+ 
+ 

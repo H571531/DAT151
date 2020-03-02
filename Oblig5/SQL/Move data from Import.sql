@@ -55,3 +55,8 @@ INSERT INTO Passing3
 SELECT DISTINCT regno,tid,idTollstation,OwnerName,'regular',TollSFee
 FROM ImportTable
 WHERE Subscription='no';
+
+-- Passing4
+INSERT INTO Passing4
+SELECT DISTINCT regno,tid,idTollstation,OwnerName,tollname
+FROM ImportTable;
