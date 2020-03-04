@@ -82,6 +82,11 @@ RP
 	a) Use the package management tool available on your system to list all installed packages. How many are installed on your system? Select one package and use the tool again to display all its dependencies
 	b) use wget to downlad the package for the application called openvpn.
 	c) try to install this package using your system's packaging tool. What happens? Why?
+[admo@s1 ~]$ sudo rpm -U openvpn-2.4.8-1.el8.x86_64.rpm
+[sudo] password for admo:
+error: Failed dependencies:
+        libpkcs11-helper.so.1()(64bit) is needed by openvpn-2.4.8-1.el8.x86_64
+[admo@s1 ~]$
 
 Task 4 High level package management
 1. Explain how theses systems can locate and install software. What is the high-level package management system on your machine?
